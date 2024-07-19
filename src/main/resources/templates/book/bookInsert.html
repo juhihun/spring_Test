@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/default_layout}"
+      layout:fragment="Content">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h4>도서 등록</h4>
+
+<form name="insertForm" th:action="@{/bookInsert}" method="post">
+	<div>도서번호<input name="bookNo" ></div>	
+	<div>도서명<input name="bookName"></div>
+	<div>도서표지<input name="bookCoverimg"></div>
+	<div>출판일자<input type="date" name="bookDate"></div>
+	<div>금액<input name="bookPrice"></div>
+	<div>출판자<input name="bookPublisher"></div>
+	<div>도서소개<input name="bookInfo"></div>
+	<div>
+	<button type="submit" >등록</button>
+	<button type="button" th:onclick="|location.href='@{/bookList}'|">조회</button>
+	</div>
+</form>
+<script>
+	insertForm.addEventListener('submit',function(event){
+		event.preventDefault();
+		let title = document.querySelector('input[name="bookName"]')
+		if(title.value == ''){
+			alert('도서명이 입력되지 않았습니다.');
+			title.focus();
+			return;
+		}
+		alert('도서등록이 완료 되었습니다.');
+		insertForm.submit();
+	}); 
+	
+
+</script>
+</body>
+</html>

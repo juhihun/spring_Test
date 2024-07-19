@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layouts/default_layout}"
+      layout:fragment="Content">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>도서 조회/수정</h3>
+<!-- <form action="bookList">
+	사번<input name="employeeId">
+	부서<input type="checkbox" name="depts"  value="10">10
+	   <input type="checkbox" name="depts"  value="20">20
+	   <input type="checkbox" name="depts"  value="30">30
+	직무<select name="jobId">
+		  <option value="">선택
+	      <option value="IT_PROG">IT_PROG
+	      <option value="ST_CLERK">ST_CLERK
+	      <option value="ST_MAN">ST_MAN
+	   </select>
+	입사일자 <input type="date" name="sdt">~<input type="date" name="edt">
+	<button>검색</button>
+</form> -->
+	<table>
+		<thead>
+			<tr>
+				<th>도서번호</th>
+				<th>도서명</th>
+				<th>표지</th>
+				<th>출판일자</th>
+				<th>금액</th>
+				<th>출판사</th>
+				<th>도서소개</th>
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each=" book, sts : ${books} ">
+			<tr>
+				<td th:text="${book.bookNo}"></td>
+				<td th:text="${book.bookName}"></td>
+				<td><img th:src="@{/images/{fileName}(fileName=${book.bookCoverimg})}" style="width : 40%;" ></td>
+				<td>[[ ${#dates.format(book.bookDate,'yyyy/MM/dd')} ]]</td>
+				<td>[[ ${#numbers.formatInteger(book.bookPrice,3,'COMMA')}]]</td>
+				<td th:text="${book.bookPublisher}"></td>
+				<td th:text="${book.bookInfo}"></td>
+			</tr>
+			</th:block>
+		</tbody>
+	</table>
+	<script>
+
+	</script>
+</body>
+</html>
